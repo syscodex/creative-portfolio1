@@ -28,10 +28,9 @@ const Techlist = ({ slice }: TechlistProps): JSX.Element => {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: component.current,
-          pin: true, // pin the trigger element while active
           start: "top bottom",
           end: "bottom top",
-          scrub: 5,
+          scrub: 4,
         },
       });
 
@@ -53,15 +52,15 @@ const Techlist = ({ slice }: TechlistProps): JSX.Element => {
           ease: "power1.inOut",
         },
       );
-  
-  }, component);
-    return ()=> ctx.revert() // cleanup!
-  })
+    }, component);
+    return () => ctx.revert(); // cleanup!
+  }, []);
   
   return (
     <section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
+      className="overflow-hidden"
       ref={component}
     >
     <Bounded as="div">
